@@ -3,7 +3,7 @@
   "caps": [
     {
       "type": "text",
-      "name": "appium:platformNam",
+      "name": "appium:platformName",
       "value": "Android"
     },
     {

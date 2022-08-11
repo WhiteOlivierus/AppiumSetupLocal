@@ -14,9 +14,11 @@ ${PACKAGE_NAME}         com.example.appiumtestapp
 Should send keys to search box and then check the value
     Open calculator
     Sleep    5
-    Click Element    com.example.appiumtestapp:id/button_first
-    Sleep    5
-
+    Click Element    com.example.appiumtestapp:id/fab
+    Sleep    5 
+    switch to context   WEBVIEW_com.example.appiumtestapp
+    Click Element    a[contains(., 'Afbeeldingen')]
+    Sleep    5 
 
 *** Keywords ***
 Open calculator
