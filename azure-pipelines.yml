@@ -6,12 +6,12 @@ pool: Self-hosted
 steps:
 - task: Gradle@3
   inputs:
-    gradleWrapperFile: '.\App\gradlew'
-    workingDirectory: '.\App\'
+    gradleWrapperFile: '$(Build.ArtifactStagingDirectory)\App\gradlew'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)\App\'
     tasks: 'build'
     javaHomeOption: 'JDKVersion'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\app\app\build\outputs\apk\release\app-release-unsigned.apk'
     ArtifactName: 'AndroidBuild'
     publishLocation: 'Container'
