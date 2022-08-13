@@ -6,8 +6,8 @@ pool: Self-hosted
 steps:
 - task: Gradle@3
   inputs:
-    gradleWrapperFile: '$(Build.ArtifactStagingDirectory)\App\gradlew'
-    workingDirectory: '$(Build.ArtifactStagingDirectory)\App\'
+    gradleWrapperFile: '.\App\gradlew'
+    workingDirectory: '.\App\'
     tasks: 'build'
     javaHomeOption: 'JDKVersion'
 - task: PublishBuildArtifacts@1
