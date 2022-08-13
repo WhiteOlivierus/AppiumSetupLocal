@@ -6,7 +6,7 @@ pool: Self-hosted
 steps:
 - task: Gradle@3
   inputs:
-    gradleWrapperFile: '.\App\'
+    gradleWrapperFile: '.\App\gradlew'
     workingDirectory: '.\App\'
     tasks: 'build'
     publishJUnitResults: false
