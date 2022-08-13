@@ -13,10 +13,12 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
+    SourceFolder: 'app\app\build\outputs\apk\release\'
+    Contents: 'app-release-unsigned.apk'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'  
 
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: drop'
+  displayName: 'Android build artifact'
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)'
     ArtifactName: 'AndroidBuild'
