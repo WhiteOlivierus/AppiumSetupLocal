@@ -9,10 +9,7 @@ steps:
     gradleWrapperFile: '.\App\gradlew'
     workingDirectory: '.\App\'
     tasks: 'build'
-    publishJUnitResults: false
     javaHomeOption: 'JDKVersion'
-    sonarQubeRunAnalysis: false
-    spotBugsAnalysis: false
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
