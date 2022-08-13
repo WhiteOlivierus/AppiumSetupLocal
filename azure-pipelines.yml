@@ -13,3 +13,8 @@ steps:
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
     spotBugsAnalysis: false
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\app\build\outputs\apk'
+    ArtifactName: 'AndroidBuild'
+    publishLocation: 'Container'
