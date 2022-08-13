@@ -12,6 +12,6 @@ steps:
     javaHomeOption: 'JDKVersion'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)\app\app\build\outputs\apk\release\app-release-unsigned.apk'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)\app\build\outputs\apk\release\app-release-unsigned.apk'
     ArtifactName: 'AndroidBuild'
     publishLocation: 'Container'
