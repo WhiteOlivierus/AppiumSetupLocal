@@ -4,11 +4,12 @@ trigger:
 pool: Self-hosted
 
 steps:
-- task: Gradle@2
+- task: Gradle@3
   inputs:
-    workingDirectory: '.\app'
     gradleWrapperFile: 'gradlew'
-    gradleOptions: '-Xmx3072m'
+    workingDirectory: './app'
+    tasks: 'build'
     publishJUnitResults: false
-    testResultsFiles: '**/TEST-*.xml'
-    tasks: 'assembleDebug'
+    javaHomeOption: 'JDKVersion'
+    sonarQubeRunAnalysis: false
+    spotBugsAnalysis: false
