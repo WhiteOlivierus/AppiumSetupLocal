@@ -1,8 +1,7 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'windows-latest'
+pool: Self-hosted
 
 steps:
 - task: Gradle@2
