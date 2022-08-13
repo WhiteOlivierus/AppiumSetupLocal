@@ -3,23 +3,28 @@ trigger:
 
 pool: Self-hosted
 
-steps:
-- task: Gradle@3
-  inputs:
-    gradleWrapperFile: '.\App\gradlew'
-    workingDirectory: '.\App\'
-    tasks: 'build'
-    javaHomeOption: 'JDKVersion'
+jobs:
+- job: Build
+  pool:
+    name: Self-hosted 
+  steps:
+  - task: Gradle@3
+    inputs:
+      gradleWrapperFile: '.\App\gradlew'
+      workingDirectory: '.\App\'
+      tasks: 'build'
+      javaHomeOption: 'JDKVersion'
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: 'app\app\build\outputs\apk\release\'
-    Contents: 'app-release-unsigned.apk'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'  
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: 'app\app\build\outputs\apk\release\'
+      Contents: 'app-release-unsigned.apk'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'  
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Android build artifact'
-  inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
-    ArtifactName: 'AndroidBuild'
-    publishLocation: 'Container'
+  - task: PublishBuildArtifacts@1
+    displayName: 'Android build artifact'
+    inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)'
+      ArtifactName: 'AndroidBuild'
+      publishLocation: 'Container'
+
