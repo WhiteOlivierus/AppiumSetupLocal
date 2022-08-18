@@ -1,89 +1,89 @@
 trigger:
-- master
+  - master
 
 pool: Self-hosted
 
 jobs:
-- job: Build
-  pool:
-    name: Self-hosted 
-  steps:
-  - task: Gradle@3
-    inputs:
-      gradleWrapperFile: '.\App\gradlew'
-      workingDirectory: '.\App\'
-      tasks: 'build'
-      javaHomeOption: 'JDKVersion'
+  - job: Build
+    pool:
+      name: Self-hosted
+    steps:
+      - task: Gradle@3
+        inputs:
+          gradleWrapperFile: '.\App\gradlew'
+          workingDirectory: '.\App\'
+          tasks: "build"
+          javaHomeOption: "JDKVersion"
 
-  - task: CopyFiles@2
-    inputs:
-      SourceFolder: 'app\app\build\outputs\apk\release\'
-      Contents: 'app-release-unsigned.apk'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'  
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: 'app\app\build\outputs\apk\release\'
+          Contents: "app-release-unsigned.apk"
+          TargetFolder: "$(Build.ArtifactStagingDirectory)"
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Android build artifact'
-    inputs:
-      PathtoPublish: '$(build.artifactstagingdirectory)'
-      ArtifactName: 'AndroidBuild'
-      publishLocation: 'Container'
+      - task: PublishBuildArtifacts@1
+        displayName: "Android build artifact"
+        inputs:
+          PathtoPublish: "$(build.artifactstagingdirectory)"
+          ArtifactName: "AndroidBuild"
+          publishLocation: "Container"
 
-- job: 'Android_tools_setup'
-  pool:
-    name: Self-hosted 
-  condition: ne(variables.ANDROID_TOOLS_RESTORED, 'true')
-  steps:
-  - task: Bash@3
-    inputs:
-      targetType: 'inline'
-      script: 'curl -o android-tools.zip https://dl.google.com/android/repository/commandlinetools-win-8512546_latest.zip'
-  - task: ExtractFiles@1
-    inputs:
-      archiveFilePatterns: 'android-tools.zip'
-      destinationFolder: 'android-tools'
-      cleanDestinationFolder: true
-      overwriteExistingFiles: false
-  - task: Cache@2
-    inputs:
-      key: 'android-tools'
-      path: 'android-tools'
-      cacheHitVar: 'ANDROID_TOOLS_RESTORED'
+  - job: "Android_tools_setup"
+    pool:
+      name: Self-hosted
+    condition: ne(variables.ANDROID_TOOLS_RESTORED, 'true')
+    steps:
+      - task: Bash@3
+        inputs:
+          targetType: "inline"
+          script: "curl -o android-tools.zip https://dl.google.com/android/repository/commandlinetools-win-8512546_latest.zip"
+      - task: ExtractFiles@1
+        inputs:
+          archiveFilePatterns: "android-tools.zip"
+          destinationFolder: "android-tools"
+          cleanDestinationFolder: true
+          overwriteExistingFiles: false
+      - task: Cache@2
+        inputs:
+          key: "android-tools"
+          path: "android-tools"
+          cacheHitVar: "ANDROID_TOOLS_RESTORED"
 
-- job: 'Chrome_driver_setup'
-  pool:
-    name: Self-hosted 
-  condition: ne(variables.CHROME_DRIVER_RESTORED, 'true')
-  steps:
-  - task: Bash@3
-    inputs:
-      targetType: 'inline'
-      script: 'curl -o chrome-driver.zip https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_win32.zip'
-  - task: ExtractFiles@1
-    inputs:
-      archiveFilePatterns: 'chrome-driver.zip'
-      destinationFolder: 'chrome-driver'
-      cleanDestinationFolder: true
-      overwriteExistingFiles: false
-  - task: Cache@2
-    inputs:
-      key: 'chrome-driver'
-      path: 'chrome-driver'
-      cacheHitVar: 'CHROME_DRIVER_RESTORED'
+  - job: "Chrome_driver_setup"
+    pool:
+      name: Self-hosted
+    condition: ne(variables.CHROME_DRIVER_RESTORED, 'true')
+    steps:
+      - task: Bash@3
+        inputs:
+          targetType: "inline"
+          script: "curl -o chrome-driver.zip https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_win32.zip"
+      - task: ExtractFiles@1
+        inputs:
+          archiveFilePatterns: "chrome-driver.zip"
+          destinationFolder: "chrome-driver"
+          cleanDestinationFolder: true
+          overwriteExistingFiles: false
+      - task: Cache@2
+        inputs:
+          key: "chrome-driver"
+          path: "chrome-driver"
+          cacheHitVar: "CHROME_DRIVER_RESTORED"
 
-- job: `Appium-setup`
-  pool:
-    name: Self-hosted
-  steps:
-  - task: Bash@3
-    inputs:
-      targetType: 'inline'
-      script: 'npm install -g appium'
+  - job: 'Appium-setup'
+    pool:
+      name: Self-hosted
+    steps:
+      - task: Bash@3
+        inputs:
+          targetType: "inline"
+          script: "npm install -g appium"
 
-- job: `Robotframwork-appium-setup`
-  pool:
-    name: Self-hosted
-  steps:
-  - task: Bash@3
-    inputs:
-      targetType: 'inline'
-      script: 'pip install --upgrade robotframework-appiumlibrary'
+  - job: 'Robotframwork-appium-setup'
+    pool:
+      name: Self-hosted
+    steps:
+      - task: Bash@3
+        inputs:
+          targetType: "inline"
+          script: "pip install --upgrade robotframework-appiumlibrary"
