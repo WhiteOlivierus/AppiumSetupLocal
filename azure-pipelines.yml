@@ -70,7 +70,7 @@ jobs:
           path: "chrome-driver"
           cacheHitVar: "CHROME_DRIVER_RESTORED"
 
-  - job: 'Appium-setup'
+  - job: 'Appium_setup'
     pool:
       name: Self-hosted
     steps:
@@ -79,7 +79,7 @@ jobs:
           targetType: "inline"
           script: "npm install -g appium"
 
-  - job: 'Robotframwork-appium-setup'
+  - job: 'Robotframwork_appium_setup'
     pool:
       name: Self-hosted
     steps:
