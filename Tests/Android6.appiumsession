@@ -14,7 +14,7 @@
     {
       "type": "text",
       "name": "appium:deviceName",
-      "value": "arm"
+      "value": "android"
     },
     {
       "type": "text",

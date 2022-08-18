@@ -1,0 +1,32 @@
+{"level":30,"time":"2022-08-18T17:55:24.206Z","pid":8244,"hostname":"Bas-PC","msg":"Listening on 62479"}
+{"level":30,"time":"2022-08-18T17:55:24.454Z","pid":8244,"hostname":"Bas-PC","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2022-08-18T17:55:24.455Z","pid":8244,"hostname":"Bas-PC","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2022-08-18T17:55:24.456Z","pid":8244,"hostname":"Bas-PC","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2022-08-18T17:55:24.456Z","pid":8244,"hostname":"Bas-PC","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2022-08-18T17:55:42.883Z","pid":8244,"hostname":"Bas-PC","msg":"Start of node method click"}
+{"level":30,"time":"2022-08-18T17:55:42.885Z","pid":8244,"hostname":"Bas-PC","msg":"Error of node method  click"}
+================= Original suppressed error =================
+Error: Could not find active page
+    at exists (C:\Users\bas10\AppData\Local\Programs\Python\Python310\lib\site-packages\Browser\wrapper\index.js:6857:11)
+    at findLocator (C:\Users\bas10\AppData\Local\Programs\Python\Python310\lib\site-packages\Browser\wrapper\index.js:6723:3)
+    at click (C:\Users\bas10\AppData\Local\Programs\Python\Python310\lib\site-packages\Browser\wrapper\index.js:7570:25)
+    at PlaywrightServer.click (C:\Users\bas10\AppData\Local\Programs\Python\Python310\lib\site-packages\Browser\wrapper\index.js:8467:34)
+    at handleUnary (C:\Users\bas10\AppData\Local\Programs\Python\Python310\lib\site-packages\Browser\wrapper\node_modules\@grpc\grpc-js\build\src\server.js:688:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+=============================================================
+{"level":30,"time":"2022-08-18T17:55:42.889Z","pid":8244,"hostname":"Bas-PC","msg":"Start of node method takeScreenshot"}
+{"level":30,"time":"2022-08-18T17:55:42.889Z","pid":8244,"hostname":"Bas-PC","msg":"Error of node method  takeScreenshot"}
+================= Original suppressed error =================
+Error: Tried to take screenshot, but no page was open.
+    at exists (C:\Users\bas10\AppData\Local\Programs\Python\Python310\lib\site-packages\Browser\wrapper\index.js:6857:11)
+    at takeScreenshot (C:\Users\bas10\AppData\Local\Programs\Python\Python310\lib\site-packages\Browser\wrapper\index.js:6894:3)
+    at PlaywrightServer.takeScreenshot (C:\Users\bas10\AppData\Local\Programs\Python\Python310\lib\site-packages\Browser\wrapper\index.js:8467:34)
+    at handleUnary (C:\Users\bas10\AppData\Local\Programs\Python\Python310\lib\site-packages\Browser\wrapper\node_modules\@grpc\grpc-js\build\src\server.js:688:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+=============================================================
+{"level":30,"time":"2022-08-18T17:55:42.897Z","pid":8244,"hostname":"Bas-PC","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2022-08-18T17:55:42.897Z","pid":8244,"hostname":"Bas-PC","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2022-08-18T17:55:42.899Z","pid":8244,"hostname":"Bas-PC","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2022-08-18T17:55:42.899Z","pid":8244,"hostname":"Bas-PC","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2022-08-18T17:55:44.937Z","pid":8244,"hostname":"Bas-PC","msg":"Start of node method closeAllBrowsers"}
+{"level":30,"time":"2022-08-18T17:55:44.938Z","pid":8244,"hostname":"Bas-PC","msg":"End of node method closeAllBrowsers"}

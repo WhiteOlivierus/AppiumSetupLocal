@@ -4,6 +4,66 @@ trigger:
 pool: Self-hosted
 
 jobs:
+  - job: "Android_tools_setup"
+    pool:
+      name: Self-hosted
+    condition: ne(variables.ANDROID_TOOLS_RESTORED, 'true')
+    steps:
+      - checkout: none
+      - task: CmdLine@2
+        inputs:
+          script: "curl -o android-tools.zip https://dl.google.com/android/repository/commandlinetools-win-8512546_latest.zip"
+      - task: ExtractFiles@1
+        inputs:
+          archiveFilePatterns: "android-tools.zip"
+          destinationFolder: "android-tools"
+          cleanDestinationFolder: true
+          overwriteExistingFiles: false
+      - task: Cache@2
+        inputs:
+          key: "android-tools"
+          path: "android-tools"
+          cacheHitVar: "ANDROID_TOOLS_RESTORED"
+
+  - job: "Chrome_driver_setup"
+    pool:
+      name: Self-hosted
+    condition: ne(variables.CHROME_DRIVER_RESTORED, 'true')
+    steps:
+      - checkout: none
+      - task: CmdLine@2
+        inputs:
+          script: "curl -o chrome-driver.zip https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_win32.zip"
+      - task: ExtractFiles@1
+        inputs:
+          archiveFilePatterns: "chrome-driver.zip"
+          destinationFolder: "chrome-driver"
+          cleanDestinationFolder: true
+          overwriteExistingFiles: false
+      - task: Cache@2
+        inputs:
+          key: "chrome-driver"
+          path: "chrome-driver"
+          cacheHitVar: "CHROME_DRIVER_RESTORED"
+
+  - job: "Appium_setup"
+    pool:
+      name: Self-hosted
+    steps:
+      - checkout: none
+      - task: CmdLine@2
+        inputs:
+          script: "npm install -g appium"
+
+  - job: "Robotframwork_appium_setup"
+    pool:
+      name: Self-hosted
+    steps:
+      - checkout: none
+      - task: CmdLine@2
+        inputs:
+          script: "pip install --upgrade robotframework-appiumlibrary"
+
   - job: Build
     pool:
       name: Self-hosted
@@ -27,59 +87,3 @@ jobs:
           PathtoPublish: "$(build.artifactstagingdirectory)"
           ArtifactName: "AndroidBuild"
           publishLocation: "Container"
-
-  - job: "Android_tools_setup"
-    pool:
-      name: Self-hosted
-    condition: ne(variables.ANDROID_TOOLS_RESTORED, 'true')
-    steps:
-      - task: CmdLine@2
-        inputs:
-          script: "curl -o android-tools.zip https://dl.google.com/android/repository/commandlinetools-win-8512546_latest.zip"
-      - task: ExtractFiles@1
-        inputs:
-          archiveFilePatterns: "android-tools.zip"
-          destinationFolder: "android-tools"
-          cleanDestinationFolder: true
-          overwriteExistingFiles: false
-      - task: Cache@2
-        inputs:
-          key: "android-tools"
-          path: "android-tools"
-          cacheHitVar: "ANDROID_TOOLS_RESTORED"
-
-  - job: "Chrome_driver_setup"
-    pool:
-      name: Self-hosted
-    condition: ne(variables.CHROME_DRIVER_RESTORED, 'true')
-    steps:
-      - task: CmdLine@2
-        inputs:
-          script: "curl -o chrome-driver.zip https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_win32.zip"
-      - task: ExtractFiles@1
-        inputs:
-          archiveFilePatterns: "chrome-driver.zip"
-          destinationFolder: "chrome-driver"
-          cleanDestinationFolder: true
-          overwriteExistingFiles: false
-      - task: Cache@2
-        inputs:
-          key: "chrome-driver"
-          path: "chrome-driver"
-          cacheHitVar: "CHROME_DRIVER_RESTORED"
-
-  - job: 'Appium_setup'
-    pool:
-      name: Self-hosted
-    steps:
-      - task: CmdLine@2
-        inputs:
-          script: "npm install -g appium"
-
-  - job: 'Robotframwork_appium_setup'
-    pool:
-      name: Self-hosted
-    steps:
-      - task: CmdLine@2
-        inputs:
-          script: "pip install --upgrade robotframework-appiumlibrary"
