@@ -33,9 +33,8 @@ jobs:
       name: Self-hosted
     condition: ne(variables.ANDROID_TOOLS_RESTORED, 'true')
     steps:
-      - task: Bash@3
+      - task: CmdLine@2
         inputs:
-          targetType: "inline"
           script: "curl -o android-tools.zip https://dl.google.com/android/repository/commandlinetools-win-8512546_latest.zip"
       - task: ExtractFiles@1
         inputs:
@@ -54,9 +53,8 @@ jobs:
       name: Self-hosted
     condition: ne(variables.CHROME_DRIVER_RESTORED, 'true')
     steps:
-      - task: Bash@3
+      - task: CmdLine@2
         inputs:
-          targetType: "inline"
           script: "curl -o chrome-driver.zip https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_win32.zip"
       - task: ExtractFiles@1
         inputs:
@@ -74,16 +72,14 @@ jobs:
     pool:
       name: Self-hosted
     steps:
-      - task: Bash@3
+      - task: CmdLine@2
         inputs:
-          targetType: "inline"
           script: "npm install -g appium"
 
   - job: 'Robotframwork_appium_setup'
     pool:
       name: Self-hosted
     steps:
-      - task: Bash@3
+      - task: CmdLine@2
         inputs:
-          targetType: "inline"
           script: "pip install --upgrade robotframework-appiumlibrary"
