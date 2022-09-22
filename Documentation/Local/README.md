@@ -30,6 +30,42 @@ pip install --upgrade robotframework-appiumlibrary
 - package
 - android:name
 
-![](2022-08-10-21-09-32.png)
-![](2022-08-10-21-10-02.png)
-![](2022-08-10-21-10-21.png)
+![r](2022-08-10-21-09-32.png)
+![r](2022-08-10-21-10-02.png)
+![r](2022-08-10-21-10-21.png)
+
+```powershell
+appium -p 4723 -a 0.0.0.0 -pa /wd/hub --chromedriver-executable "C:\Users\bas10\Downloads\chromedriver.exe"
+```
+
+```powershell
+# for test creation or debugging
+emulator.exe -avd Pixel_4a_API_31
+
+# Run the test as fast as possible
+emulator.exe -avd Pixel_4a_API_31 -no-window
+```
+
+```robot
+*** Variables ***
+${REMOTE_URL}           http://localhost:4723/wd/hub
+${PLATFORM_NAME}        Android
+${PLATFORM_VERSION}     12.0
+# ${DEVICE_NAME}          SM_G965F
+${Activity_NAME}        com.example.appiumtestapp.MainActivity
+${PACKAGE_NAME}         com.example.appiumtestapp
+
+*** Keywords ***
+Open start app
+    Open Application    ${REMOTE_URL}
+    ...                 platformName=${PLATFORM_NAME}
+    ...                 platformVersion=${PLATFORM_VERSION}
+    # ...                 deviceName=${DEVICE_NAME}
+    ...                 udid=21a31fb0f90d7ece
+    ...                 appWaitForLaunch=false
+    ...                 app=C:\\Users\\bas10\\Desktop\\AppiumTest\\Tests\\app-debug.apk
+    ...                 automationName=UiAutomator2
+    ...                 newCommandTimeout=2500
+    ...                 appActivity=${Activity_NAME}
+    ...                 appPackage=${PACKAGE_NAME}
+```
